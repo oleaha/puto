@@ -2,7 +2,7 @@
 session_start();
 define('PROD', true);
 if(PROD == true) {
-    define('ROOT', '');
+    define('ROOT', '/puto');
 } else {
     define('ROOT', '/puto');
 }
