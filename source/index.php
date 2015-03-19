@@ -36,7 +36,7 @@ if(isset($_POST['login'])) {
 require 'design/nav.php';
 ?>
 
-<div class="col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3 text-center">
+<div class="col-md-2 col-md-offset-5 col-xs-8 col-xs-offset-2 text-center">
     <form action="" method="post">
         <div class="form-group">
             <label for="loginName"><h3 class="no-margin">Username:</h3></label>
