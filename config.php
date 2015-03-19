@@ -1,6 +1,6 @@
 <?php
 session_start();
-define('PROD', false);
+define('PROD', true);
 if(PROD == true) {
     define('ROOT', '../');
 } else {
