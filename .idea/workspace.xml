@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="config.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="16" selection-start="22" selection-end="22" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="240">
+            <state line="8" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.30612245" vertical-offset="0" max-vertical-offset="392">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="nav.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/design/nav.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="86" selection-start="1384" selection-end="1384" vertical-scroll-proportion="-11.416667" vertical-offset="146" max-vertical-offset="525">
+            <state line="28" column="86" selection-start="1384" selection-end="1384" vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="525">
               <folding />
             </state>
           </provider>
@@ -71,16 +71,16 @@
       <file leaf-file-name="database.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/system/database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="28" selection-start="944" selection-end="944" vertical-scroll-proportion="-18.75" vertical-offset="60" max-vertical-offset="630">
+            <state line="13" column="6" selection-start="312" selection-end="312" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="660">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.28846154" vertical-offset="0" max-vertical-offset="416">
+            <state line="8" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
               <folding />
             </state>
           </provider>
@@ -101,8 +101,8 @@
         <option value="$PROJECT_DIR$/source/design/top.php" />
         <option value="$PROJECT_DIR$/source/design/nav.php" />
         <option value="$PROJECT_DIR$/lib/css/style.css" />
-        <option value="$PROJECT_DIR$/system/database.php" />
         <option value="$PROJECT_DIR$/source/index.php" />
+        <option value="$PROJECT_DIR$/system/database.php" />
         <option value="$PROJECT_DIR$/config.php" />
       </list>
     </option>
@@ -306,10 +306,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="752" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32930514" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32930514" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -359,6 +359,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="6" selection-start="312" selection-end="312" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="660">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="27" selection-start="798" selection-end="798" vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="870">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/design/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="120">
@@ -368,7 +389,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/source/design/nav.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="86" selection-start="1384" selection-end="1384" vertical-scroll-proportion="-11.416667" vertical-offset="146" max-vertical-offset="525">
+        <state line="28" column="86" selection-start="1384" selection-end="1384" vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="525">
           <folding />
         </state>
       </provider>
@@ -382,28 +403,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="16" selection-start="22" selection-end="22" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="240">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="28" selection-start="944" selection-end="944" vertical-scroll-proportion="-18.75" vertical-offset="60" max-vertical-offset="630">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="27" selection-start="798" selection-end="798" vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="870">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.28846154" vertical-offset="0" max-vertical-offset="416">
+        <state line="8" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.30612245" vertical-offset="0" max-vertical-offset="392">
           <folding />
         </state>
       </provider>
