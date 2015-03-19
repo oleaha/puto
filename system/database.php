@@ -3,6 +3,7 @@ require '../config.php';
 require '../lib/medoo.min.php';
 
 if(PROD == true) {
+    /*
     $count = new medoo(array(
         'database_type' => 'mysql',
         'database_name' => 'individu.count',
@@ -10,6 +11,7 @@ if(PROD == true) {
         'username' => 'root',
         'password' => 'Y-t5JMu73'
     ));
+    */
 
     $individu = new medoo(array(
         'database_type' => 'mysql',
