@@ -1,0 +1,10 @@
+
+body {
+    background: url('../../img/nidelven.jpg') bottom center/cover no-repeat;
+    min-height: 1000px;
+    color: #FFFFFF;
+}
+
+h3.no-margin {
+    margin: 0;
+}
