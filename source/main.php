@@ -32,7 +32,6 @@ if(isset($_POST['login'])) {
     }
 }
 
-
 require 'design/nav.php';
 ?>
 
