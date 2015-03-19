@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="config.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="config.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="10" selection-start="156" selection-end="156" vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="240">
+            <state line="10" column="14" selection-start="160" selection-end="160" vertical-scroll-proportion="0.38265306" vertical-offset="0" max-vertical-offset="392">
               <folding />
             </state>
           </provider>
@@ -41,10 +41,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="nav.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/design/nav.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="50" selection-start="57" selection-end="57" vertical-scroll-proportion="0.039577838" vertical-offset="0" max-vertical-offset="510">
+            <state line="1" column="33" selection-start="40" selection-end="40" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
@@ -89,7 +89,7 @@
       <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+            <state line="9" column="1" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
               <folding />
             </state>
           </provider>
@@ -107,14 +107,14 @@
       <list>
         <option value="$PROJECT_DIR$/source/design/footer.php" />
         <option value="$PROJECT_DIR$/lib/css/bootstrap/cosmo.min.css" />
-        <option value="$PROJECT_DIR$/lib/css/style.css" />
         <option value="$PROJECT_DIR$/system/database.php" />
         <option value="$PROJECT_DIR$/source/main.php" />
         <option value="$PROJECT_DIR$/source/design/top.php" />
         <option value="$PROJECT_DIR$/source/index.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/source/design/nav.php" />
+        <option value="$PROJECT_DIR$/lib/css/style.css" />
+        <option value="$PROJECT_DIR$/config.php" />
       </list>
     </option>
   </component>
@@ -405,13 +405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/design/top.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="6" selection-start="84" selection-end="84" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="435">
@@ -419,16 +412,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
+    <entry file="file://$PROJECT_DIR$/source/design/nav.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="10" selection-start="156" selection-end="156" vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="240">
+        <state line="1" column="33" selection-start="40" selection-end="40" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="510">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/design/nav.php">
+    <entry file="file://$PROJECT_DIR$/lib/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="50" selection-start="57" selection-end="57" vertical-scroll-proportion="0.039577838" vertical-offset="0" max-vertical-offset="510">
+        <state line="9" column="1" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="14" selection-start="160" selection-end="160" vertical-scroll-proportion="0.38265306" vertical-offset="0" max-vertical-offset="392">
           <folding />
         </state>
       </provider>

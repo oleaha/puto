@@ -1,7 +1,7 @@
 
 body {
     background: url('../../img/nidelven.jpg') bottom center/cover no-repeat;
-    min-height: 1000px;
+    min-height: 100vh;
     color: #FFFFFF;
 }
 
