@@ -1,4 +1,8 @@
 <?php
+if(isset($_SESSION['status']) && $_SESSION['status'] == true) {
+    header('Location: main.php');
+}
+
 require 'design/top.php';
 
 if(isset($_POST['login'])) {
