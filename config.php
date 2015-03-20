@@ -1,6 +1,13 @@
 <?php
 session_start();
-define('PROD', true);
+
+if($_SERVER['HTTP_HOST'] == 'localhost:8888') {
+    define('PROD', false);
+} else {
+    define('PROD', true);
+}
+
+
 if(PROD == true) {
     define('ROOT', '');
 } else {

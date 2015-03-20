@@ -16,14 +16,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="#">Count Product</a></li>
+                <li><a href="count.php">Count Product</a></li>
                 <li><a href="#">Validate count</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href=""><i class="fa fa-user"></i> <?php echo $_SESSION['username']; ?></a></li>
             </ul>
             <?php } ?>
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>
-<div class="col-md-10 col-md-offset-1 col-xs-12">
-    <?php if($error == true) { ?>
-    <div class="alert alert-danger col-md-4 col-md-offset-4"><i class="fa fa-warning"></i> <?php echo $message; ?></div>
-<?php } ?>
+<div class="col-md-12 col-xs-12">

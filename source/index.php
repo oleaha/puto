@@ -1,9 +1,9 @@
 <?php
-if(isset($_SESSION['status']) && $_SESSION['status'] == true) {
-    header('Location: main.php');
-}
-
 require 'design/top.php';
+
+if($_SESSION['status'] == true) {
+    header('Location: count.php');
+}
 
 if(isset($_POST['login'])) {
     if(!empty($_POST['username']) && !empty($_POST['password'])) {
@@ -16,31 +16,34 @@ if(isset($_POST['login'])) {
 
             if(count($result) == 1) {
                 $_SESSION['status'] = true;
-                // TOOD: Log this
+                $_SESSION['username'] = $_POST['username'];
+                addEvent($count, $_SESSION['username'], 'login-success', 'User logged in successfully');
             } else {
+                $_SESSION['status'] = false;
                 $error = true;
                 $message = "Invalid username and or password!";
-                // TODO: Log this
+                addEvent($count, $_POST['username'], 'login-error', 'User tried to log in, but had the wrong password. User: '.$_POST['username']);
             }
-
         } else {
+            $_SESSION['status'] = false;
             $error = true;
             $message = "Invalid username and or password!";
-            // TODO: Log this
+            addEvent($count, $_POST['username'], 'login-error', 'User tried to log in, but had the wrong username. User: '.$_POST['username']);
         }
 
     } else {
+        $_SESSION['status'] = false;
         $error = true;
         $message = "Invalid username and or password!";
-        // TODO: Log this
+        addEvent($count, $_POST['username'], 'login-error', 'Someone tried to log in without username and password');
     }
 }
-
-
 require 'design/nav.php';
-?>
 
-<div class="col-md-2 col-md-offset-5 col-xs-8 col-xs-offset-2 text-center">
+if($error == true) { ?>
+    <div class="alert alert-danger col-md-4 col-md-offset-4"><i class="fa fa-warning"></i> <?php echo $message; ?></div>
+<?php } ?>
+<div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2 text-center">
     <form action="" method="post">
         <div class="form-group">
             <label for="loginName"><h3 class="no-margin">Username:</h3></label>

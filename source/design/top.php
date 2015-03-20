@@ -1,5 +1,6 @@
 <?php
 require '../system/database.php';
+require_once '../system/log.php';
 
 ?>
 

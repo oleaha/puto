@@ -8,3 +8,31 @@ body {
 h3.no-margin {
     margin: 0;
 }
+
+.ean-count {
+    padding-top: 5em;
+    /*background-color: rgba(255, 255, 255, 0.6); */
+    padding-bottom: 5em;
+}
+
+.statistics {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    font-size: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .ean-field{
+        width: 350px !important;
+        font-size: 40px;
+        height: 80px;
+    }
+
+    .btn-ean {
+        height: 80px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+}
