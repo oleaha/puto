@@ -1,8 +1,9 @@
 <?php
 require 'design/top.php';
 
-if($_SESSION['status'] == true) {
-    header('Location: count.php');
+if($_SESSION['status'] == true) { ?>
+    <script> location.replace("count.php"); </script>
+<?php
 }
 
 if(isset($_POST['login'])) {
@@ -17,22 +18,23 @@ if(isset($_POST['login'])) {
             if(count($result) == 1) {
                 $_SESSION['status'] = true;
                 $_SESSION['username'] = $_POST['username'];
+                $_SESSION['time'] = time();
                 addEvent($count, $_SESSION['username'], 'login-success', 'User logged in successfully');
             } else {
-                $_SESSION['status'] = false;
+                session_unset($_SESSION);
                 $error = true;
                 $message = "Invalid username and or password!";
                 addEvent($count, $_POST['username'], 'login-error', 'User tried to log in, but had the wrong password. User: '.$_POST['username']);
             }
         } else {
-            $_SESSION['status'] = false;
+            session_unset($_SESSION);
             $error = true;
             $message = "Invalid username and or password!";
             addEvent($count, $_POST['username'], 'login-error', 'User tried to log in, but had the wrong username. User: '.$_POST['username']);
         }
 
     } else {
-        $_SESSION['status'] = false;
+        session_unset($_SESSION);
         $error = true;
         $message = "Invalid username and or password!";
         addEvent($count, $_POST['username'], 'login-error', 'Someone tried to log in without username and password');

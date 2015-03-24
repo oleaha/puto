@@ -1,0 +1,5 @@
+RewriteEngine On
+RedirectMatch ^/$ /source/
+
+
+RewriteRule ^count count.php

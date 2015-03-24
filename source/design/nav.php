@@ -17,10 +17,11 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="count.php">Count Product</a></li>
-                <li><a href="#">Validate count</a></li>
+                <li><a href="validate.php">Validate count</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href=""><i class="fa fa-user"></i> <?php echo $_SESSION['username']; ?></a></li>
+                <li><a href="?logout=true"><i class="fa fa-ban"></i> Log out</a></li>
             </ul>
             <?php } ?>
         </div><!-- /.navbar-collapse -->

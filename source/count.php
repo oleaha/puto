@@ -1,8 +1,5 @@
 <?php
 require 'design/top.php';
-if(isset($_SESSION['status']) && $_SESSION['status'] == true) {
-    header('Location: main.php');
-}
 
 if(isset($_GET['delete'])) {
 
@@ -16,7 +13,7 @@ if(isset($_GET['delete'])) {
     } else {
         $error = 15;
         $message = "#4: Could not delete EAN.";
-        addEvent($count, $_SESSION['username'], 'delete-error', 'User tried to delete EAN, but something went wrong', $ean);
+        addEvent($count, $_SESSION['username'], 'delete-error', 'User tried to delete EAN, but something went wrong', $ean[0]['ean']);
     }
 }
 
@@ -91,7 +88,7 @@ require 'design/nav.php';
                 </thead>
                 <tbody>
                 <?php
-                $counts = $count->select('count', array('id', 'date', 'username', 'ean'), array('LIMIT' => 20));
+                $counts = $count->select('count', array('id', 'date', 'username', 'ean'), array('ORDER' => 'date DESC', 'LIMIT' => 20));
 
                 foreach($counts as $count) { ?>
 
@@ -110,7 +107,32 @@ require 'design/nav.php';
             </table>
         </div>
         <div class="col-xs-6">
-            Test
+            <h3>Log for <?php echo $_SESSION['username']; ?>:</h3>
+            <table class="table table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>Date:</th>
+                    <th>Action:</th>
+                    <th>Message:</th>
+                    <th>EAN:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                $logs = $count->select('log', array('date', 'action', 'message', 'ean'), array('username' => $_SESSION['username'], 'ORDER' => 'date DESC','LIMIT' => 20));
+
+                foreach($logs as $log) { ?>
+                    <tr>
+                        <td><?php echo $log['date']; ?></td>
+                        <td><?php echo $log['action']; ?></td>
+                        <td><?php echo $log['message']; ?></td>
+                        <td><?php echo $log['ean']; ?></td>
+                    </tr>
+                <?php
+                }
+                ?>
+                </tbody>
+            </table>
         </div>
     </div>
 <?php require 'design/footer.php'; ?>
