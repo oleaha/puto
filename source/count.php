@@ -22,12 +22,14 @@ if(isset($_POST['count'])) {
 
     // Validate EAN
     if(!empty($ean) && is_numeric($ean)) {
-
         // Se if product is in OC
         $result = $individu->select("product_option_value", 'product_id', array('ean' => $ean));
 
-        // Give error if product is not registered
+        // Could not find EAN in product_option_value table, check product table
         if (count($result) == 0) {
+            $result = $individu->select('product', 'product_id', array('ean' => $ean));
+        }
+        if(count($result) == 0) {
             $error = 15;
             $message = "#1: Product is not registerd in <a href='http://individu.no/gossip' target='_blank'>OpenCart!</a>";
             addEvent($count, $_SESSION['username'], 'count-unregistered', 'User tried to count unregistered EAN.', $ean);
@@ -90,14 +92,14 @@ require 'design/nav.php';
                 <?php
                 $counts = $count->select('count', array('id', 'date', 'username', 'ean'), array('ORDER' => 'date DESC', 'LIMIT' => 20));
 
-                foreach($counts as $count) { ?>
+                foreach($counts as $counted) { ?>
 
                     <tr>
-                        <td><?php echo $count['date']; ?></td>
-                        <td><?php echo $count['username']; ?></td>
-                        <td><?php echo $count['ean']; ?></td>
-                        <td><?php echo $count['ean']; ?></td>
-                        <td class="text-center"><a href="?delete=<?php echo $count['id']; ?>"><i class="fa fa-minus-circle" style="color: #843534"></i></a></td>
+                        <td><?php echo $counted['date']; ?></td>
+                        <td><?php echo $counted['username']; ?></td>
+                        <td><?php echo $counted['ean']; ?></td>
+                        <td><?php echo $counted['ean']; ?></td>
+                        <td class="text-center"><a href="?delete=<?php echo $counted['id']; ?>"><i class="fa fa-minus-circle" style="color: #843534"></i></a></td>
                     </tr>
 
                 <?php
@@ -120,7 +122,6 @@ require 'design/nav.php';
                 <tbody>
                 <?php
                 $logs = $count->select('log', array('date', 'action', 'message', 'ean'), array('username' => $_SESSION['username'], 'ORDER' => 'date DESC','LIMIT' => 20));
-
                 foreach($logs as $log) { ?>
                     <tr>
                         <td><?php echo $log['date']; ?></td>

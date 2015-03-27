@@ -49,7 +49,7 @@ if($error == true) { ?>
     <form action="" method="post">
         <div class="form-group">
             <label for="loginName"><h3 class="no-margin">Username:</h3></label>
-            <input type="text" class="form-control" id="loginName" name="username" placeholder="Username">
+            <input type="text" class="form-control" id="loginName" name="username" placeholder="Username" autofocus="true" >
         </div>
         <div class="form-group">
             <label for="loginPassword"><h3 class="no-margin">Password:</h3></label>

@@ -3,15 +3,19 @@ require 'design/top.php';
 
 if(isset($_POST['validate'])) {
 
-    $from_date = $_POST['start'];
-    $to_date = $_POST['end'];
+    $from_date  = $_POST['start'];
+    $to_date    = $_POST['end'];
 
-    $diff_products = array();
-
-    $counted_products = $count->query("SELECT COUNT(id) as number, ean FROM count WHERE date BETWEEN '".$from_date."' AND '".$to_date."' GROUP BY ean");
+    # Array containing product that have a difference
+    $diff_products      = array();
+    $counted_products   = $count->query("SELECT COUNT(id) as number, ean FROM count WHERE date BETWEEN '".$from_date."' AND '".$to_date."' GROUP BY ean");
 
     foreach ($counted_products as $counted) {
         $oc_product = $individu->select('product_option_value', array('[><]product' => array('product_id' => 'product_id')) , array('product_option_value.quantity', 'product.sku', 'product.status'), array('product_option_value.ean' => $counted['ean']));
+
+        if(count($oc_product) == 0) {
+            $oc_product = $individu->select('product', array('product_id', 'sku', 'quantity'), array('ean' => $counted['ean']));
+        }
 
         if($counted['number'] != $oc_product[0]['quantity']) {
             array_push($diff_products, array(
@@ -30,6 +34,8 @@ require 'design/nav.php';
 ?>
 
     <div class="col-md-6 col-md-offset-3 text-center">
+        <h1>Validate count</h1>
+        <p>Select and end date to validate.</p>
         <form action="" method="post" class="form-inline">
             <div class="input-daterange input-group" id="datepicker">
                 <input type="text" class="input-lg form-control" name="start"/>
