@@ -5,7 +5,11 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
-        <i class="fa fa-warning"></i> <?php echo $message; ?></div>
+        <i class="fa fa-warning"></i> <?php echo $message; ?>
+        <audio autoplay>
+            <source src="<?php echo ROOT; ?>/lib/pacdies.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 <?php } else if($error == 10) { ?>
     <div class="alert alert-info alert-dismissable col-md-10 col-md-offset-1 pull-left" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
