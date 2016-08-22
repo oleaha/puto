@@ -31,6 +31,15 @@ h3.no-margin {
 }
 
 
+.receipt {
+    background-color: white;
+    color: black;
+    min-height: 450px;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+
 @media screen and (min-width: 768px) {
     .ean-field{
         width: 350px !important;

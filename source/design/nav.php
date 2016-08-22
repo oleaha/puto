@@ -19,6 +19,8 @@
                 <li><a href="count.php">Count Product</a></li>
                 <li><a href="validate.php">Validate count</a></li>
                 <li><a href="check.php">Check product</a></li>
+                <li><a href="buy.php">Buy products</a></li>
+                <li><a href="remove-product.php">Remove products</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href=""><i class="fa fa-user"></i> <?php echo $_SESSION['username']; ?></a></li>
