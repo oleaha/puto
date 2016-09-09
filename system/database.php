@@ -22,16 +22,16 @@ if(PROD == true) {
     $count = new medoo(array(
         'database_type' => 'mysql',
         'database_name' => 'individu.count',
-        'server' => 'localhost',
+        'server' => '185.7.63.117',
         'username' => 'root',
-        'password' => 'root'
+        'password' => 'Y-t5JMu73'
     ));
 
     $individu = new medoo(array(
         'database_type' => 'mysql',
-        'database_name' => 'individu.local',
-        'server' => 'localhost',
+        'database_name' => 'individu.main',
+        'server' => '185.7.63.117',
         'username' => 'root',
-        'password' => 'root'
+        'password' => 'Y-t5JMu73'
     ));
 }

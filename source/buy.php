@@ -18,7 +18,7 @@ if(isset($_POST['buy'])) {
 
         $product_id = $product_prod[0]['product_id'];
 
-        if($product_id != 0 || !$product_id != null) {
+        if($product_id != null) {
 
             // Get details
             $product = $count->select("warehouseraid", '*', array('product_id' => $product_id));
@@ -38,26 +38,28 @@ if(isset($_POST['buy'])) {
                 "price" => $product[0]['price'],
                 "payment_method" => "VIPPS",
             ));
-
-            echo $count->last_query();
-
-
-            if(isset($_SESSION['cart'])) {
-                $_SESSION['cart']['products'][] = $product[0]['gender']."::".$product[0]['sku'].",".$product[0]['price'];
-                $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
-            } else {
-                $_SESSION['cart']['products'] = array();
-                $_SESSION['cart']['total'] = 0;
-                $_SESSION['cart']['receipt'] = 0;
-
-                $_SESSION['cart']['products'][] = $product[0]['gender']."::".$product[0]['sku'].",".$product[0]['price'];
-                $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
-            }
         } else {
             $error = 15;
             $message = 'Could not find product';
-
         }
+    } else {
+        $error = 15;
+        $message = "Illegal EAN";
+    }
+}
+
+if(isset($_POST['update'])) {
+    $counter = 0;
+    foreach($_POST['id'] as $product) {
+        $count->update("kvitt",
+            array(
+                "price" => $_POST['price'][$counter],
+                "payment_method" => $_POST['payment_method']),
+            array("AND" => array(
+                "id" => $product,
+                "kvittId" => $_SESSION['cart']['receipt']
+            )));
+        $counter++;
     }
 }
 
@@ -74,82 +76,80 @@ require 'design/nav.php';
 ?>
 
 
-<div class="col-md-12">
-    <form action="" method="post" class="form-inline">
-        <div class="col-md-8 text-center">
-            <div class="ean-count text-center">
+    <div class="col-md-12">
+        <form action="" method="post" class="form-inline">
+            <div class="col-md-8 text-center">
+                <div class="ean-count text-center">
 
-                <?php require 'design/errorhandler.php'; ?>
-                <div class="form-group">
-                    <input type="text" class="ean-field form-control input-lg" id="ean" name="ean" placeholder="EAN" autocomplete="off" autofocus="on">
+                    <?php require 'design/errorhandler.php'; ?>
+                    <div class="form-group">
+                        <input type="text" class="ean-field form-control input-lg" id="ean" name="ean" placeholder="EAN" autocomplete="off" autofocus="on">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg btn-ean" name="buy"><i class="fa fa-barcode fa-3x"></i></button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg btn-ean" name="buy"><i class="fa fa-barcode fa-3x"></i></button>
-                </div>
-
             </div>
-        </div>
-        <div class="col-md-4 receipt">
-            <h3>Receipt #<?php echo $_SESSION['cart']['receipt']; ?>
-                <button type="submit" name="clear-list" class="btn btn-danger btn-xs">New customer</button>
-                <button class="btn btn-info btn-xs">Print</button>
-            </h3>
-            <table class="table">
-                <tr>
-                    <td>
-                        <label for="method">Betalingsmåte:</label>
-                        <select name="payment_method" class="form-control input-sm" id="method">
-                            <option value="VIPPS">Vipps</option>
-                            <option value="CASH">Kontakt</option>
-                            <option value="Invoice">Faktura</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+            <div class="col-md-4 receipt">
+                <h3>Receipt #<?php echo $_SESSION['cart']['receipt']; ?>
+                    <button type="submit" name="clear-list" class="btn btn-danger btn-xs">New customer</button>
+                    <a class="btn btn-info btn-xs" role="button" target="_blank" href="print.php?r=<?php echo $_SESSION['cart']['receipt']; ?>">Print</a>
+                    <button class="btn btn-success btn-xs" type="submit" name="update">Oppdater</button>
+                </h3>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <label for="method">Betalingsmåte:</label>
+                            <select name="payment_method" class="form-control input-sm" id="method">
+                                <option value="VIPPS">Vipps</option>
+                                <option value="CASH">Kontant</option>
+                                <option value="INV">Faktura</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th><span class="pull-right">Price</span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Product</th>
-                    <th><span class="pull-right">Price</span></th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($_SESSION['cart']['products'] as $item) {
-                    $p = explode(",", $item);
-                    $gender = explode("::", $p[0]);
+                    $products = null;
+                    $total = 0;
 
-                    if($gender[0] == 'M') {
-                        $gender_icon = "<i class='fa fa-male'></i>";
-                    } elseif($gender[0] == "D") {
-                        $gender_icon = "<i class='fa fa-female'></i>";
-                    } else {
-                        $gender_icon = "<i class='fa fa-question'></i>";
+                    if(isset($_SESSION['cart']['receipt'])) {
+                        $products = $count->select("kvitt", "*", array("kvittId" => $_SESSION['cart']['receipt']));
                     }
 
+                    foreach($products as $product) {
+                        $total = $total + $product['price'];
                     ?>
+                        <tr>
+                            <td><?php echo $product['sku']; ?></td>
+                            <td>
+                                <input type="hidden" name="id[]" value="<?php echo $product['id']; ?>">
+                                <input type="number" name="price[]" value="<?php echo $product['price']; ?>" class="form-control input-sm pull-right" style="width:75px;">
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                    <tfoot>
                     <tr>
-                        <td><?php echo $gender_icon." ".$gender[1]; ?></td>
-                        <td><input type="number" name="price" value="<?php echo $p[1]; ?>" class="form-control input-sm pull-right" style="width:75px;"></td>
+                        <td align="right"></td>
+                        <td><span class="pull-right">Mva: <span style="padding-left: 20px;"><?php echo ($total * 0.2); ?></span></span></td>
                     </tr>
-                <?php } ?>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td align="right"></td>
-                    <td><span class="pull-right">Mva: <span style="padding-left: 20px;"><?php echo ($_SESSION['cart']['total'] * 0.2); ?></span></span></td>
-                </tr>
-                <tr>
-                    <td align="right"> </td>
-                    <td style="font-weight: bold;"><span class="pull-right">Sum: <span style="padding-left: 20px"></span><?php echo $_SESSION['cart']['total']; ?></span></span></td>
-                </tr>
-                </tfoot>
-            </table>
-        </div>
-    </form>
-</div>
-
+                    <tr>
+                        <td align="right"> </td>
+                        <td style="font-weight: bold;"><span class="pull-right">Sum: <span style="padding-left: 20px"></span><?php echo $total; ?></span></span></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </form>
+    </div>
 
 <?php require 'design/footer.php'; ?>
-
-
