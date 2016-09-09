@@ -9,18 +9,25 @@ if(isset($_POST['buy'])) {
         $error = 5;
         $message = 'Product registered';
 
-        $product = $individu->select("product_option_value",array("[>]product" => array("product_id" => "product_id")), array('product.product_id', 'product.sku'), array('product_option_value.ean' => $ean));
+        // Get product id
 
-        //echo $individu->last_query();
+        $product_prod = $individu->select("product_option_value",array("[>]product" => array("product_id" => "product_id")), array('product.product_id', 'product.sku'), array('product_option_value.ean' => $ean));
 
-        if(count($product) == 0) {
-            $product = $individu->select("product", "product_id", array("ean" => $ean));
+        if(count($product_prod) == 0) {
+            $product_prod = $individu->select("product", "product_id", array("ean" => $ean));
         }
 
-        $product_id = $product[0]['product_id'];
-	$product_sku = $product[0]['sku'];
+        $product_id = $product_prod[0]['product_id'];
+        $product_sku = $product_prod[0]['sku'];
 
-	//var_dump($product_sku);
+        // Get details
+
+        $product = $count->select("warehouseraid", '*', array('product_id' => $product_id));
+
+        var_dump($product);
+
+        /*
+        //var_dump($product_sku);
 
         // Find price!
 
@@ -34,13 +41,15 @@ if(isset($_POST['buy'])) {
 
         if(isset($_SESSION['cart'])) {
             $_SESSION['cart'][] = $product_sku.",".($price[0]*1.25);
-	    $_SESSION['total'] = ($_SESSION['total'] + ($price[0]*1.25));
+            $_SESSION['total'] = ($_SESSION['total'] + ($price[0]*1.25));
         } else {
             $_SESSION['cart'] = array();
-	    $_SESSION['total'] = 0;
+            $_SESSION['total'] = 0;
             $_SESSION['cart'][] = $product_sku.",".($price[0]*1.25);
-	    $_SESSION['total'] = ($_SESSION['total'] + ($price*1.25));
+            $_SESSION['total'] = ($_SESSION['total'] + ($price*1.25));
         }
+
+        */
     }
 }
 
