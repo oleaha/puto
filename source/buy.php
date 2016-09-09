@@ -71,6 +71,35 @@ if(isset($_POST['clear-list'])) {
     $message = 'New customer';
 }
 
+if(isset($_POST['send_receipt'])) {
+    $email = $_POST['email'];
+
+    $products = null;
+    $total = 0;
+
+    if(isset($_SESSION['cart']['receipt'])) {
+        $products = $count->select("kvitt", "*", array("kvittId" => $_SESSION['cart']['receipt']));
+    }
+
+    $subject = "Kvittering for kjøp hos INDIVIDU.NO";
+    $headers = "From: kundeservice@individu.no";
+
+    $message = "Under følger kvittering for ditt kjøp \n";
+
+    $total = 0;
+    foreach($products as $product) {
+        $message .= "Sku: ".$product['sku']." - Pris: ".$product['price']."\n";
+        $total = $total + $product['price'];
+    }
+
+    $message .= "\n\n MVA: ".($total * 0.2)." \n Totalt: ".$total;
+
+    mail($email,$subject, $message, $headers);
+
+    $error = 5;
+    $message = 'Mail sent!';
+}
+
 
 require 'design/nav.php';
 ?>
@@ -97,14 +126,31 @@ require 'design/nav.php';
                     <button class="btn btn-success btn-xs" type="submit" name="update">Oppdater</button>
                 </h3>
                 <table class="table">
+                    <?php
+
+                    $products = null;
+                    $total = 0;
+
+                    if(isset($_SESSION['cart']['receipt'])) {
+                        $products = $count->select("kvitt", "*", array("kvittId" => $_SESSION['cart']['receipt']));
+                    }
+                    ?>
                     <tr>
                         <td>
-                            <label for="method">Betalingsmåte:</label>
+                            <label for="method">Bet. måte:</label>
                             <select name="payment_method" class="form-control input-sm" id="method">
-                                <option value="VIPPS">Vipps</option>
-                                <option value="CASH">Kontant</option>
-                                <option value="INV">Faktura</option>
+                                <option value="VIPPS" <?php if($products[0]['payment_method'] == "VIPPS") echo "selected"; ?>>Vipps</option>
+                                <option value="CASH" <?php if($products[0]['payment_method'] == "CASH") echo "selected"; ?>>Kontant</option>
+                                <option value="INV" <?php if($products[0]['payment_method'] == "INV") echo "selected"; ?>>Faktura</option>
                             </select>
+                        </td>
+                        <td>
+                            <label for="email">Epost: </label>
+                            <input type="email" name="email" id="email" class="form-control input-sm">
+                        </td>
+                        <td class="text-center">
+                            <label for="send">Kvittering: </label>
+                            <button type="submit" name="send_receipt" id="send" class="btn btn-success btn-sm">Send</button>
                         </td>
                     </tr>
                 </table>
@@ -117,13 +163,6 @@ require 'design/nav.php';
                     </thead>
                     <tbody>
                     <?php
-
-                    $products = null;
-                    $total = 0;
-
-                    if(isset($_SESSION['cart']['receipt'])) {
-                        $products = $count->select("kvitt", "*", array("kvittId" => $_SESSION['cart']['receipt']));
-                    }
 
                     foreach($products as $product) {
                         $total = $total + $product['price'];
