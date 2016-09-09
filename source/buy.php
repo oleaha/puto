@@ -43,14 +43,14 @@ if(isset($_POST['buy'])) {
 
 
             if(isset($_SESSION['cart'])) {
-                $_SESSION['cart']['products'][] = $product[0]['gender']."-".$product[0]['sku'].",".$product[0]['price'];
+                $_SESSION['cart']['products'][] = $product[0]['gender']."::".$product[0]['sku'].",".$product[0]['price'];
                 $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
             } else {
                 $_SESSION['cart']['products'] = array();
                 $_SESSION['cart']['total'] = 0;
                 $_SESSION['cart']['receipt'] = 0;
 
-                $_SESSION['cart']['products'][] = $product[0]['gender']."-".$product[0]['sku'].",".$product[0]['price'];
+                $_SESSION['cart']['products'][] = $product[0]['gender']."::".$product[0]['sku'].",".$product[0]['price'];
                 $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
             }
         } else {
@@ -117,9 +117,19 @@ require 'design/nav.php';
                 <tbody>
                 <?php foreach ($_SESSION['cart']['products'] as $item) {
                     $p = explode(",", $item);
+                    $gender = explode("::", $p[0]);
+
+                    if($gender == 'M') {
+                        $gender_icon = "<i class='fa fa-male'></i>";
+                    } elseif($gender == "D") {
+                        $gender_icon = "<i class='fa fa-female'></i>";
+                    } else {
+                        $gender_icon = "<i class='fa fa-question'></i>";
+                    }
+
                     ?>
                     <tr>
-                        <td><?php echo $p[0]; ?></td>
+                        <td><?php echo $gender_icon." ".$gender[1]; ?></td>
                         <td><input type="number" name="price" value="<?php echo $p[1]; ?>" class="form-control input-sm pull-right" style="width:75px;"></td>
                     </tr>
                 <?php } ?>
