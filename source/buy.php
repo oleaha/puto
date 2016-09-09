@@ -90,7 +90,7 @@ require 'design/nav.php';
             </div>
         </div>
         <div class="col-md-4 receipt">
-            <h3>Receipt <button type="submit" name="clear-list" class="btn btn-danger btn-xs">New customer</button></h3>
+            <h3>Receipt #><?php echo $_SESSION['cart']['receipt']; ?> <button type="submit" name="clear-list" class="btn btn-danger btn-xs">New customer</button></h3>
             <table class="table">
                 <thead>
                 <tr>
