@@ -84,7 +84,7 @@ if(isset($_POST['send_receipt'])) {
     $subject = "Kvittering for kjøp hos INDIVIDU.NO";
     $headers = "From: kundeservice@individu.no";
 
-    $message = "Under følger kvittering for ditt kjøp \n";
+    $message = "Under følger kvittering for ditt kjøp \n\n";
 
     $total = 0;
     foreach($products as $product) {
@@ -100,13 +100,27 @@ if(isset($_POST['send_receipt'])) {
     $message = 'Mail sent!';
 }
 
+if(isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+
+    $deleted = $count->delete("kvitt", array("id" => $id));
+
+    if($deleted) {
+        $error = 5;
+        $message = 'Slettet';
+    } else {
+        $error = 15;
+        $message = 'Det skjedde en feil :(';
+    }
+}
+
 
 require 'design/nav.php';
 ?>
 
 
     <div class="col-md-12">
-        <form action="" method="post" class="form-inline">
+        <form action="buy.php" method="post" class="form-inline">
             <div class="col-md-8 text-center">
                 <div class="ean-count text-center">
 
@@ -168,7 +182,7 @@ require 'design/nav.php';
                         $total = $total + $product['price'];
                     ?>
                         <tr>
-                            <td><?php echo $product['sku']; ?></td>
+                            <td><a href="?delete=<?php echo $product['id']; ?>"><i class="fa fa-minus-circle" style="color: #d9534f"></i></a> <?php echo $product['sku']; ?></td>
                             <td>
                                 <input type="hidden" name="id[]" value="<?php echo $product['id']; ?>">
                                 <input type="number" name="price[]" value="<?php echo $product['price']; ?>" class="form-control input-sm pull-right" style="width:75px;">
