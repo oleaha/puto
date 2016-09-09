@@ -84,7 +84,8 @@ if(isset($_POST['send_receipt'])) {
     $subject = "Kvittering for kjøp hos INDIVIDU.NO";
     $headers = "From: kundeservice@individu.no";
 
-    $message = "Under følger kvittering for ditt kjøp \n\n";
+    $message = "Hei! \n Takk for din bestilling! Under følger kvittering for ditt kjøp hos INDIVIDU.NO \n\n";
+    $message .= "Dato for kjøp: 10.09.2016 \n";
 
     $total = 0;
     foreach($products as $product) {
@@ -92,7 +93,9 @@ if(isset($_POST['send_receipt'])) {
         $total = $total + $product['price'];
     }
 
-    $message .= "\n\n MVA: ".($total * 0.2)." \n Totalt: ".$total;
+    $message .= "\n\n MVA(25%): ".($total * 0.2)." \n Totalt: ".$total."\n\n";
+
+    $message .= "Lagersalg - Ingen bytte/returrett ved salg over disk.";
 
     mail($email,$subject, $message, $headers);
 
@@ -113,7 +116,6 @@ if(isset($_GET['delete'])) {
         $message = 'Det skjedde en feil :(';
     }
 }
-
 
 require 'design/nav.php';
 ?>
