@@ -25,7 +25,7 @@ if(isset($_POST['buy'])) {
 
             // Add intance to kvitt table
             if($_SESSION['cart']['receipt'] == 0) {
-                $last_id = $count->select("kvitt", "kvittId", array("ORDER" => array("kvittId" => "DESC"), "LIMIT" => "1"));
+                $last_id = $count->select("kvitt", "kvittId", array("ORDER" => "kvittId DESC", "LIMIT" => "1"));
                 echo $count->last_query();
                 var_dump($last_id);
             }
