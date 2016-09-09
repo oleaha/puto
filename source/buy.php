@@ -9,7 +9,7 @@ if(isset($_POST['buy'])) {
         $error = 5;
         $message = 'Product registered';
 
-        $product = $individu->select("product_option_value",array("[>]product" => array("product_id" => "product_id")), 'product.product_id', array('product_option_value.ean' => $ean));
+        $product = $individu->select("product_option_value",array("[>]product" => array("product_id" => "product_id")), array('product.product_id', 'product.sku'), array('product_option_value.ean' => $ean));
 
         //echo $individu->last_query();
 
@@ -17,23 +17,29 @@ if(isset($_POST['buy'])) {
             $product = $individu->select("product", "product_id", array("ean" => $ean));
         }
 
-        $product_id = $product[0];
+        $product_id = $product[0]['product_id'];
+	$product_sku = $product[0]['sku'];
+
+	//var_dump($product_sku);
 
         // Find price!
 
         $price = $individu->select("product_special", "price", array("AND" => array("product_id" => $product_id, "date_end" => '2016-12-31')));
 
-        echo $individu->last_query();
+        //echo $individu->last_query();
 
         //var_dump($price);
 
 
 
         if(isset($_SESSION['cart'])) {
-            $_SESSION['cart'][] = $product_id.",".$price;
+            $_SESSION['cart'][] = $product_sku.",".($price[0]*1.25);
+	    $_SESSION['total'] = ($_SESSION['total'] + ($price[0]*1.25));
         } else {
             $_SESSION['cart'] = array();
-            $_SESSION['cart'][] = $product_id.",".$price;
+	    $_SESSION['total'] = 0;
+            $_SESSION['cart'][] = $product_sku.",".($price[0]*1.25);
+	    $_SESSION['total'] = ($_SESSION['total'] + ($price*1.25));
         }
     }
 }
@@ -41,7 +47,7 @@ if(isset($_POST['buy'])) {
 if(isset($_POST['clear-list'])) {
 
     unset($_SESSION['cart']);
-
+    unset($_SESSION['total']);
     $error = 5;
     $message = 'New customer';
 }
@@ -81,14 +87,14 @@ require 'design/nav.php';
                     ?>
                     <tr>
                         <td><?php echo $p[0]; ?></td>
-                        <td><?php echo $p[1][0]; ?></td>
+                        <td><?php echo $p[1]; ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
                 <tfoot>
                 <tr>
                     <td align="right">Sum:</td>
-                    <td>4409,-</td>
+                    <td><?php echo $_SESSION['total']; ?></td>
                 </tr>
                 </tfoot>
             </table>
