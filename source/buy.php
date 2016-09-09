@@ -39,6 +39,8 @@ if(isset($_POST['buy'])) {
                 "payment" => "VIPPS",
             ));
 
+            echo $count->last_query();
+
 
             if(isset($_SESSION['cart'])) {
                 $_SESSION['cart']['products'][] = $product[0]['gender']."-".$product[0]['sku'].",".$product[0]['price'];
