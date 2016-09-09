@@ -18,7 +18,6 @@ if(isset($_POST['buy'])) {
         }
 
         $product_id = $product_prod[0]['product_id'];
-        $product_sku = $product_prod[0]['sku'];
 
         var_dump($product_id);
 
@@ -26,7 +25,7 @@ if(isset($_POST['buy'])) {
 
         $product = $count->select("warehouseraid", '*', array('product_id' => $product_id));
 
-        var_dump($product);
+        var_dump($product[0]['sku']);
 
         $price = ($product[0]['price'] * 1.25);
 
@@ -82,7 +81,7 @@ require 'design/nav.php';
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($_SESSION['cart'] as $item) {
+                <?php foreach ($_SESSION['cart']['products'] as $item) {
                     $p = explode(",", $item);
                     ?>
                     <tr>
@@ -94,7 +93,7 @@ require 'design/nav.php';
                 <tfoot>
                 <tr>
                     <td align="right">Sum:</td>
-                    <td><?php echo $_SESSION['total']; ?></td>
+                    <td><?php echo $_SESSION['cart']['total']; ?></td>
                 </tr>
                 </tfoot>
             </table>
