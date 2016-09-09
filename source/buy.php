@@ -120,7 +120,7 @@ require 'design/nav.php';
                     ?>
                     <tr>
                         <td><?php echo $p[0]; ?></td>
-                        <td><?php echo $p[1]; ?></td>
+                        <td><input type="number" name="price" value="<?php echo $p[1]; ?>" class="form-control input-sm" style="width:100px;"></td>
                     </tr>
                 <?php } ?>
                 </tbody>
