@@ -36,7 +36,7 @@ if(isset($_POST['buy'])) {
                 "sku" => $product[0]['sku'],
                 "ean" => $ean,
                 "price" => $product[0]['price'],
-                "payment" => "VIPPS",
+                "payment_method" => "VIPPS",
             ));
 
             echo $count->last_query();
