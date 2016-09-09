@@ -95,7 +95,7 @@ if(isset($_POST['send_receipt'])) {
 
     $message .= "\n\n MVA(25%): ".($total * 0.2).",- \n Totalt: ".$total.",-\n\n";
 
-    $message .= "Lagersalg - Ingen bytte/returrett ved salg over disk.";
+    $message .= "Lagersalg";
 
     mail($email,$subject, $message, $headers);
 
