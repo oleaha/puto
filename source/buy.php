@@ -23,12 +23,22 @@ if(isset($_POST['buy'])) {
             // Get details
             $product = $count->select("warehouseraid", '*', array('product_id' => $product_id));
 
-            // Add intance to kvitt table
+            //Check if new receipt is created
             if($_SESSION['cart']['receipt'] == 0) {
                 $last_id = $count->select("kvitt", "kvittId", array("ORDER" => "kvittId DESC", "LIMIT" => "1"));
-                echo $count->last_query();
-                var_dump($last_id);
+                $_SESSION['cart']['receipt'] = ($last_id[0] + 1);
             }
+
+            // Add line to receipt
+            $insert = $count->insert("kvitt", array(
+                "kvittId" => $_SESSION['cart']['receipt'],
+                "product_id" => $product_id,
+                "sku" => $product[0]['sku'],
+                "ean" => $ean,
+                "price" => $product[0]['price'],
+                "payment" => "VIPPS",
+            ));
+
 
             if(isset($_SESSION['cart'])) {
                 $_SESSION['cart']['products'][] = $product[0]['gender']."-".$product[0]['sku'].",".$product[0]['price'];
