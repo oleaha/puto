@@ -126,12 +126,12 @@ require 'design/nav.php';
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td align="right">Mva:</td>
-                    <td><?php echo ($_SESSION['cart']['total'] * 0.2); ?></td>
+                    <td align="right"></td>
+                    <td><span class="pull-right">Mva: <span style="padding-left: 20px;"><?php echo ($_SESSION['cart']['total'] * 0.2); ?></span></span></td>
                 </tr>
                 <tr>
-                    <td align="right">Sum:</td>
-                    <td><?php echo $_SESSION['cart']['total']; ?></td>
+                    <td align="right"> </td>
+                    <td style="font-weight: bold;"><span class="pull-right">Sum: <span style="padding-left: 20px"></span><?php echo $_SESSION['cart']['total']; ?></span></span></td>
                 </tr>
                 </tfoot>
             </table>
