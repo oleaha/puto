@@ -90,7 +90,23 @@ require 'design/nav.php';
             </div>
         </div>
         <div class="col-md-4 receipt">
-            <h3>Receipt #><?php echo $_SESSION['cart']['receipt']; ?> <button type="submit" name="clear-list" class="btn btn-danger btn-xs">New customer</button></h3>
+            <h3>Receipt #<?php echo $_SESSION['cart']['receipt']; ?>
+                <button type="submit" name="clear-list" class="btn btn-danger btn-xs">New customer</button>
+                <button class="btn btn-info btn-xs">Print</button>
+            </h3>
+            <table class="table">
+                <tr>
+                    <td>
+                        <label for="method">Betalingsmåte:</label>
+                        <select name="payment_method" class="form-control input-sm" id="method">
+                            <option value="VIPPS">Vipps</option>
+                            <option value="CASH">Kontakt</option>
+                            <option value="Invoice">Faktura</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
             <table class="table">
                 <thead>
                 <tr>
