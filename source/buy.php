@@ -27,18 +27,17 @@ if(isset($_POST['buy'])) {
 
         var_dump($product[0]['sku']);
 
-        $price = ($product[0]['price'] * 1.25);
 
 
         if(isset($_SESSION['cart'])) {
-            $_SESSION['cart']['products'][] = $product[0]['sku'].",".$price;
-            $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $price;
+            $_SESSION['cart']['products'][] = $product[0]['sku'].",".$product[0]['price'];
+            $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
         } else {
             $_SESSION['cart']['products'] = array();
             $_SESSION['cart']['total'] = 0;
 
-            $_SESSION['cart']['products'][] = $product[0]['sku'].",".$price;
-            $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $price;
+            $_SESSION['cart']['products'][] = $product[0]['sku'].",".$product[0]['price'];
+            $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
         }
     }
 }
@@ -91,6 +90,10 @@ require 'design/nav.php';
                 <?php } ?>
                 </tbody>
                 <tfoot>
+                <tr>
+                    <td align="right">Mva:</td>
+                    <td><?php echo ($_SESSION['cart']['total'] * 0.2); ?></td>
+                </tr>
                 <tr>
                     <td align="right">Sum:</td>
                     <td><?php echo $_SESSION['cart']['total']; ?></td>
