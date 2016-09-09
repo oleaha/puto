@@ -10,7 +10,6 @@ if(isset($_POST['buy'])) {
         $message = 'Product registered';
 
         // Get product id
-
         $product_prod = $individu->select("product_option_value",array("[>]product" => array("product_id" => "product_id")), array('product.product_id', 'product.sku'), array('product_option_value.ean' => $ean));
 
         if(count($product_prod) == 0) {
@@ -19,25 +18,25 @@ if(isset($_POST['buy'])) {
 
         $product_id = $product_prod[0]['product_id'];
 
-        var_dump($product_id);
+        if($product_id != 0 || !$product_id != null) {
 
-        // Get details
+            // Get details
+            $product = $count->select("warehouseraid", '*', array('product_id' => $product_id));
 
-        $product = $count->select("warehouseraid", '*', array('product_id' => $product_id));
+            if(isset($_SESSION['cart'])) {
+                $_SESSION['cart']['products'][] = $product[0]['gender']."-".$product[0]['sku'].",".$product[0]['price'];
+                $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
+            } else {
+                $_SESSION['cart']['products'] = array();
+                $_SESSION['cart']['total'] = 0;
 
-        var_dump($product[0]['sku']);
-
-
-
-        if(isset($_SESSION['cart'])) {
-            $_SESSION['cart']['products'][] = $product[0]['sku'].",".$product[0]['price'];
-            $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
+                $_SESSION['cart']['products'][] = $product[0]['gender']."-".$product[0]['sku'].",".$product[0]['price'];
+                $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
+            }
         } else {
-            $_SESSION['cart']['products'] = array();
-            $_SESSION['cart']['total'] = 0;
+            $error = 15;
+            $message = 'Could not find product';
 
-            $_SESSION['cart']['products'][] = $product[0]['sku'].",".$product[0]['price'];
-            $_SESSION['cart']['total'] = $_SESSION['cart']['total'] + $product[0]['price'];
         }
     }
 }
