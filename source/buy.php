@@ -111,7 +111,7 @@ require 'design/nav.php';
                 <thead>
                 <tr>
                     <th>Product</th>
-                    <th>Price</th>
+                    <th><span class="pull-right">Price</span></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -120,7 +120,7 @@ require 'design/nav.php';
                     ?>
                     <tr>
                         <td><?php echo $p[0]; ?></td>
-                        <td><input type="number" name="price" value="<?php echo $p[1]; ?>" class="form-control input-sm" style="width:100px;"></td>
+                        <td><input type="number" name="price" value="<?php echo $p[1]; ?>" class="form-control input-sm pull-right" style="width:75px;"></td>
                     </tr>
                 <?php } ?>
                 </tbody>
