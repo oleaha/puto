@@ -119,11 +119,9 @@ require 'design/nav.php';
                     $p = explode(",", $item);
                     $gender = explode("::", $p[0]);
 
-                    var_dump($gender);
-
-                    if($gender == 'M') {
+                    if($gender[0] == 'M') {
                         $gender_icon = "<i class='fa fa-male'></i>";
-                    } elseif($gender == "D") {
+                    } elseif($gender[0] == "D") {
                         $gender_icon = "<i class='fa fa-female'></i>";
                     } else {
                         $gender_icon = "<i class='fa fa-question'></i>";
