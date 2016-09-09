@@ -182,7 +182,7 @@ require 'design/nav.php';
                         $total = $total + $product['price'];
                     ?>
                         <tr>
-                            <td><a href="?delete=<?php echo $product['id']; ?>"><i class="fa fa-minus-circle" style="color: #d9534f"></i></a> <?php echo $product['sku']; ?></td>
+                            <td style="padding-top: 12px;"><a href="?delete=<?php echo $product['id']; ?>"><i class="fa fa-minus-circle" style="color: #d9534f"></i></a> <?php echo $product['sku']; ?></td>
                             <td>
                                 <input type="hidden" name="id[]" value="<?php echo $product['id']; ?>">
                                 <input type="number" name="price[]" value="<?php echo $product['price']; ?>" class="form-control input-sm pull-right" style="width:75px;">
