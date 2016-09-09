@@ -89,11 +89,11 @@ if(isset($_POST['send_receipt'])) {
 
     $total = 0;
     foreach($products as $product) {
-        $message .= "Sku: ".$product['sku']." - Pris: ".$product['price']."\n";
+        $message .= "Sku: ".$product['sku']." - Pris: ".$product['price'].",-\n";
         $total = $total + $product['price'];
     }
 
-    $message .= "\n\n MVA(25%): ".($total * 0.2)." \n Totalt: ".$total."\n\n";
+    $message .= "\n\n MVA(25%): ".($total * 0.2).",- \n Totalt: ".$total.",-\n\n";
 
     $message .= "Lagersalg - Ingen bytte/returrett ved salg over disk.";
 
