@@ -5,7 +5,7 @@ if(isset($_POST['buy'])) {
 
     $ean = trim($_POST['ean']);
 
-    if(!empty($ean) && is_numeric($ean)) {
+    if(!empty($ean)) {
         $error = 5;
         $message = 'Product registered';
 
