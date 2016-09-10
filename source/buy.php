@@ -134,6 +134,28 @@ if(isset($_GET['delete'])) {
     }
 }
 
+if(isset($_POST['insert_submit'])) {
+
+
+    // Add line to receipt
+    $insert = $count->insert("kvitt", array(
+        "kvittId" => $_SESSION['cart']['receipt'],
+        "product_id" => 0,
+        "sku" => $_POST['insert_product_id'],
+        "ean" => 0,
+        "price" => $_POST['insert_product_price'],
+        "payment_method" => "VIPPS",
+    ));
+
+    if($insert) {
+        $error = 5;
+        $message = 'OK!';
+    } else {
+        $error = 5;
+        $message = 'Det skjedde en feil';
+    }
+}
+
 require 'design/nav.php';
 ?>
 
@@ -219,6 +241,14 @@ require 'design/nav.php';
                         <td style="font-weight: bold;"><span class="pull-right">Sum: <span style="padding-left: 20px"></span><?php echo $total; ?></span></span></td>
                     </tr>
                     </tfoot>
+                </table>
+                <table class="table">
+                    <tr>
+                        <td><input type="text" name="insert_product_id" placeholder="SKU" class="form-control input-sm"></td>
+                        <td><input type="text" name="insert_product_price" placeholder="Pris" class="form-control input-sm"></td>
+                        <td><button class="btn btn-success btn-xs" type="submit" name="insert_submit">Send</button></td>
+                    </tr>
+
                 </table>
             </div>
         </form>
