@@ -29,15 +29,32 @@ if(isset($_POST['buy'])) {
                 $_SESSION['cart']['receipt'] = ($last_id[0] + 1);
             }
 
-            // Add line to receipt
-            $insert = $count->insert("kvitt", array(
-                "kvittId" => $_SESSION['cart']['receipt'],
-                "product_id" => $product_id,
-                "sku" => $product[0]['sku'],
-                "ean" => $ean,
-                "price" => $product[0]['price'],
-                "payment_method" => "VIPPS",
-            ));
+            if($product) {
+
+                // Add line to receipt
+                $insert = $count->insert("kvitt", array(
+                    "kvittId" => $_SESSION['cart']['receipt'],
+                    "product_id" => $product_id,
+                    "sku" => $product[0]['sku'],
+                    "ean" => $ean,
+                    "price" => $product[0]['price'],
+                    "payment_method" => "VIPPS",
+                ));
+            } else {
+                // Show product without price
+                $sku = $product_prod[0]['sku'];
+
+                // Add line to receipt
+                $insert = $count->insert("kvitt", array(
+                    "kvittId" => $_SESSION['cart']['receipt'],
+                    "product_id" => $product_id,
+                    "sku" => $sku,
+                    "ean" => $ean,
+                    "price" => "0",
+                    "payment_method" => "VIPPS",
+                ));
+
+            }
         } else {
             $error = 15;
             $message = 'Could not find product';
