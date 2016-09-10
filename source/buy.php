@@ -98,7 +98,7 @@ if(isset($_POST['send_receipt'])) {
         $products = $count->select("kvitt", "*", array("kvittId" => $_SESSION['cart']['receipt']));
     }
 
-    $subject = "Kvittering for kjøp hos INDIVIDU.NO";
+    $subject = "Kvittering fra INDIVIDU.NO";
     $headers = "From: kundeservice@individu.no";
 
     $message = "Hei! \n Takk for din bestilling! Under følger kvittering for ditt kjøp hos INDIVIDU.NO \n\n";
